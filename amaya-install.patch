@@ -1,0 +1,11 @@
+--- Amaya/amaya/Makefile.in~	Fri Jan  3 19:48:26 2003
++++ Amaya/amaya/Makefile.in	Fri Jan  3 19:48:48 2003
+@@ -498,8 +498,6 @@
+ 	@(if test ! -d $(bindir) ; then $(MKDIR) $(bindir) ; fi)
+ 	$(INSTALL_BIN) ../bin/amaya $(prefix)/Amaya/applis/bin
+ 	$(INSTALL_BIN) ../bin/print $(prefix)/Amaya/applis/bin
+-	$(RM) $(bindir)/amaya
+-	$(LN_S) $(prefix)/Amaya/applis/bin/amaya $(bindir)/amaya
+ 	(for i in $(AMAYAFILES) ; do \
+ 	  for file in `$(ECHO) $(THOTDIR)/amaya/$$i` ; do \
+ 	    $(INSTALL_DATA) $$file $(prefix)/Amaya/amaya ; \
