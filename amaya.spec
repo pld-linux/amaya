@@ -1,12 +1,12 @@
 Summary:	Web Browser/Editor from the World Wide Web Consortium
 Summary(pl):	Przegl±darka/edytor stron www z World Wide Web Consortium
 Name:		amaya
-Version:	8.5
+Version:	8.6
 Release:	1
 License:	Copyright 1995-2002 (MIT) (INRIA), (L)GPL compatible
 Group:		X11/Applications/Networking
 Source0:	ftp://ftp.w3.org/pub/amaya/%{name}-src-%{version}.tgz
-# Source0-md5:	0ee123988b2e09fe60f9120df8dc9012
+# Source0-md5:	a70d4fcb5c3f8d81eff78522dc7f8b01
 #Source1:	ftp://ftp.w3.org/pub/amaya/Dutch.tgz
 #Source2:	ftp://ftp.w3.org/pub/amaya/Spanish.tgz
 #Source3:	ftp://ftp.w3.org/pub/amaya/Italian.tgz
@@ -49,9 +49,9 @@ Autorzy:
 %patch0 -p1
 
 %build
-#%%{__aclocal}
+%{__aclocal}
 %{__autoconf}
-#%%{__autoheader}
+%{__autoheader}
 cp -f /usr/share/automake/{config.,missing}* .
 mkdir Linux
 cd Linux
@@ -79,7 +79,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc amaya/COPYRIGHT README README.amaya README.gl
+%doc amaya/COPYRIGHT README README.amaya README.gl README.wx
 %attr(755,root,root) %{_bindir}/amaya
 %dir %{_libdir}/Amaya
 %{_libdir}/Amaya/amaya
