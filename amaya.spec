@@ -6,6 +6,7 @@ Release:	1
 License:	Copyright 1995-2002 (MIT) (INRIA), (L)GPL compatible
 Group:		X11/Applications/Networking
 Source0:	ftp://ftp.w3.org/pub/amaya/%{name}-src-%{version}.tgz
+# Source0-md5:	e93c1b1bf64567b295bf4f48dfc0fc29
 #Source1:	ftp://ftp.w3.org/pub/amaya/Dutch.tgz
 #Source2:	ftp://ftp.w3.org/pub/amaya/Spanish.tgz
 #Source3:	ftp://ftp.w3.org/pub/amaya/Italian.tgz
