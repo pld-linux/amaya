@@ -1,8 +1,8 @@
 Summary:	Web Browser/Editor from the World Wide Web Consortium
 Summary(pl):	Przegl±darka/edytor stron www z World Wide Web Consortium
 Name:		amaya
-Version:	7.1
-Release:	2
+Version:	7.2
+Release:	1
 License:	Copyright 1995-2002 (MIT) (INRIA), (L)GPL compatible
 Group:		X11/Applications/Networking
 Source0:	ftp://ftp.w3.org/pub/amaya/%{name}-src-%{version}.tgz
@@ -11,12 +11,12 @@ Source0:	ftp://ftp.w3.org/pub/amaya/%{name}-src-%{version}.tgz
 #Source3:	ftp://ftp.w3.org/pub/amaya/Italian.tgz
 #Source4:	ftp://ftp.w3.org/pub/amaya/Swedish.tgz
 #Source5:	ftp://ftp.w3.org/pub/amaya/German.tgz
-Patch0:		%{name}-ac-gtkglarea.patch
-Patch1:		%{name}-install.patch
+Patch0:		%{name}-install.patch
 URL:		http://www.w3.org/Amaya/
 BuildRequires:	autoconf
 BuildRequires:	expat-devel
 BuildRequires:	gtk+-devel
+BuildRequires:	imlib-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	zlib-devel
@@ -46,7 +46,6 @@ Autorzy:
 %prep
 %setup -q -n Amaya
 %patch0 -p1
-%patch1 -p1
 
 %build
 #%%{__aclocal}
