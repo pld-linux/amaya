@@ -2,7 +2,7 @@ Summary:	Web Browser/Editor from the World Wide Web Consortium
 Summary(pl):	Przegl±darka/edytor stron www z World Wide Web Consortium
 Name:		amaya
 Version:	7.1
-Release:	1
+Release:	2
 License:	Copyright 1995-2002 (MIT) (INRIA), (L)GPL compatible
 Group:		X11/Applications/Networking
 URL:		http://www.w3.org/Amaya/
@@ -21,9 +21,6 @@ BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	zlib-devel
 BuildRoot:      %{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%define		_prefix		/usr/X11R6
-%define		_mandir		%{_prefix}/man
 
 %description
 
@@ -58,7 +55,7 @@ cp -f /usr/share/automake/{config.,missing}* .
 mkdir Linux
 cd Linux
 ../%configure \
-	--prefix=$RPM_BUILD_ROOT%{_prefix} \
+	--prefix=$RPM_BUILD_ROOT%{_libdir} \
 	--without-graphic-libs \
 	--with-dav \
 	--with-x
@@ -66,20 +63,20 @@ cd Linux
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_prefix}/bin
+install -d $RPM_BUILD_ROOT{%{_prefix}/bin,%{_libdir}}
 cd Linux
 %{__make} install
-ln -sf %{_prefix}/Amaya/applis/bin/%{name} $RPM_BUILD_ROOT%{_prefix}/bin/%{name} 
+ln -sf %{_libdir}/Amaya/applis/bin/%{name} $RPM_BUILD_ROOT%{_prefix}/bin/%{name} 
 
 %files
 %defattr(644,root,root,755)
 %doc amaya/COPYRIGHT README README.amaya README.gl
 %attr(755,root,root) %{_bindir}/amaya
-%dir %{_prefix}/Amaya
-%{_prefix}/Amaya/amaya
-%{_prefix}/Amaya/annotlib
-%{_prefix}/Amaya/[cdf]*
-%attr(755,root,root) %{_prefix}/Amaya/applis/bin/*
+%dir %{_libdir}/Amaya
+%{_libdir}/Amaya/amaya
+%{_libdir}/Amaya/annotlib
+%{_libdir}/Amaya/[cdf]*
+%attr(755,root,root) %{_libdir}/Amaya/applis/bin/*
 
 %clean
 rm -rf $RPM_BUILD_ROOT
