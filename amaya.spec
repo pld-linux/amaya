@@ -1,5 +1,5 @@
 Summary:	Web Browser/Editor from the World Wide Web Consortium
-Summary(pl):	Przegl±darka/edytor stron www z World Wide Web Consortium
+Summary(pl):	Przegl±darka/edytor stron WWW z World Wide Web Consortium
 Name:		amaya
 Version:	8.6
 Release:	1
@@ -35,8 +35,8 @@ Authors:
   Vincent.Quint@w3.org, Laurent.Carcone@w3.org
 
 %description -l pl
-Amaya jest kompletn± przegl±dark± www i ¶rodowiskiem tworzenia stron
-www, wyposa¿ona jest w interfejs WYSIWYG podobny do stosowanego w
+Amaya jest kompletn± przegl±dark± WWW i ¶rodowiskiem tworzenia stron
+WWW, wyposa¿ona jest w interfejs WYSIWYG podobny do stosowanego w
 najbardziej popularnych komercyjnych przegl±darkach. Z takim
 interfejsem u¿ytkownicy nie musz± wiedzieæ co to jest HTML czy CSS.
 
