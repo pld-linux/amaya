@@ -5,7 +5,6 @@ Version:	7.1
 Release:	2
 License:	Copyright 1995-2002 (MIT) (INRIA), (L)GPL compatible
 Group:		X11/Applications/Networking
-URL:		http://www.w3.org/Amaya/
 Source0:	ftp://ftp.w3.org/pub/amaya/%{name}-src-%{version}.tgz
 #Source1:	ftp://ftp.w3.org/pub/amaya/Dutch.tgz
 #Source2:	ftp://ftp.w3.org/pub/amaya/Spanish.tgz
@@ -14,16 +13,19 @@ Source0:	ftp://ftp.w3.org/pub/amaya/%{name}-src-%{version}.tgz
 #Source5:	ftp://ftp.w3.org/pub/amaya/German.tgz
 Patch0:		%{name}-ac-gtkglarea.patch
 Patch1:		%{name}-install.patch
+URL:		http://www.w3.org/Amaya/
 BuildRequires:	autoconf
 BuildRequires:	expat-devel
 BuildRequires:	gtk+-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	zlib-devel
-BuildRoot:      %{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		_prefix		/usr/X11R6
+%define		_mandir		%{_prefix}/man
 
 %description
-
 Amaya is a complete web browsing and authoring environment and comes
 equipped with a WYSIWYG style of interface, similar to that of the
 most popular commercial browsers. With such an interface, users do not
@@ -34,7 +36,6 @@ Authors:
   Vincent.Quint@w3.org, Laurent.Carcone@w3.org
 
 %description -l pl
-
 Amaya jest kompletn± przegl±dark± www i ¶rodowiskiem tworzenia stron
 www, wyposa¿ona jest w interfejs WYSIWYG podobny do stosowanego w
 najbardziej popularnych komercyjnych przegl±darkach. Z takim
@@ -50,7 +51,9 @@ Autorzy:
 %patch1 -p1
 
 %build
+#%{__aclocal}
 %{__autoconf}
+#%{__autoheader}
 cp -f /usr/share/automake/{config.,missing}* .
 mkdir Linux
 cd Linux
@@ -66,7 +69,7 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_prefix}/bin,%{_libdir}}
 cd Linux
 %{__make} install
-ln -sf %{_libdir}/Amaya/applis/bin/%{name} $RPM_BUILD_ROOT%{_prefix}/bin/%{name} 
+ln -sf %{_libdir}/Amaya/applis/bin/amaya $RPM_BUILD_ROOT%{_bindir}/amaya
 
 %files
 %defattr(644,root,root,755)
