@@ -56,9 +56,11 @@ cp -f /usr/share/automake/{config.,missing}* .
 mkdir Linux
 cd Linux
 ../%configure \
-	--prefix=$RPM_BUILD_ROOT%{_libdir} \
+	--prefix=%{_prefix} \
+	--datadir=%{_libdir} \
 	--without-graphic-libs \
 	--with-dav \
+	--with-gtk \
 	--with-x
 %{__make}
 
@@ -66,7 +68,10 @@ cd Linux
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_prefix}/bin,%{_libdir}}
 cd Linux
-%{__make} install
+%{__make} install \
+	prefix=$RPM_BUILD_ROOT%{_libdir} \
+	datadir=$RPM_BUILD_ROOT%{_libdir}
+
 ln -sf %{_libdir}/Amaya/applis/bin/amaya $RPM_BUILD_ROOT%{_bindir}/amaya
 
 %files
