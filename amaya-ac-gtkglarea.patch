@@ -1,0 +1,10 @@
+--- Amaya/configure.in.orig	Fri Jan  3 00:57:11 2003
++++ Amaya/configure.in	Fri Jan  3 00:59:44 2003
+@@ -620,6 +620,7 @@
+ 	for ac_dir in               		\
+ 		/usr/include/GL			\
+ 		/usr/include 			\
++		/usr/include/gtkgl-2.0 \
+ 		/usr/X11R6/include/GL   	\
+ 		/usr/X11R6/include 		\
+ 		/usr/local/include		\
