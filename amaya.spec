@@ -2,7 +2,7 @@ Summary:	Web Browser/Editor from the World Wide Web Consortium
 Summary(pl):	Przegl±darka/edytor stron www z World Wide Web Consortium
 Name:		amaya
 Version:	7.1
-Release:	0.9
+Release:	1
 License:	Copyright 1995-2002 (MIT) (INRIA), (L)GPL compatible
 Group:		X11/Applications/Networking
 URL:		http://www.w3.org/Amaya/
@@ -76,7 +76,10 @@ ln -sf %{_prefix}/Amaya/applis/bin/%{name} $RPM_BUILD_ROOT%{_prefix}/bin/%{name}
 %doc amaya/COPYRIGHT README README.amaya README.gl
 %attr(755,root,root) %{_bindir}/amaya
 %dir %{_prefix}/Amaya
-%{_prefix}/Amaya
+%{_prefix}/Amaya/amaya
+%{_prefix}/Amaya/annotlib
+%{_prefix}/Amaya/[cdf]*
+%attr(755,root,root) %{_prefix}/Amaya/applis/bin/*
 
 %clean
 rm -rf $RPM_BUILD_ROOT
