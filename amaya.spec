@@ -1,7 +1,7 @@
 Summary:	Web Browser/Editor from the World Wide Web Consortium
 Summary(pl):	Przegl±darka/edytor stron www z World Wide Web Consortium
 Name:		amaya
-Version:	7.2
+Version:	8.0
 Release:	1
 License:	Copyright 1995-2002 (MIT) (INRIA), (L)GPL compatible
 Group:		X11/Applications/Networking
