@@ -2,7 +2,7 @@ Summary:	Web Browser/Editor from the World Wide Web Consortium
 Summary(pl):	Przegl±darka/edytor stron www z World Wide Web Consortium
 Name:		amaya
 Version:	7.1
-Release:	0.1
+Release:	0.9
 License:	Copyright 1995-2002 (MIT) (INRIA), (L)GPL compatible
 Group:		X11/Applications/Networking
 URL:		http://www.w3.org/Amaya/
@@ -12,10 +12,11 @@ Source0:	ftp://ftp.w3.org/pub/amaya/%{name}-src-%{version}.tgz
 #Source3:	ftp://ftp.w3.org/pub/amaya/Italian.tgz
 #Source4:	ftp://ftp.w3.org/pub/amaya/Swedish.tgz
 #Source5:	ftp://ftp.w3.org/pub/amaya/German.tgz
-Patch0:	%{name}-ac-gtkglarea.patch
+Patch0:		%{name}-ac-gtkglarea.patch
+Patch1:		%{name}-install.patch
 BuildRequires:	autoconf
 BuildRequires:	expat-devel
-BuildRequires:	gtkglarea-devel
+BuildRequires:	gtk+-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	zlib-devel
@@ -49,6 +50,7 @@ Autorzy:
 %prep
 %setup -q -n Amaya
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__autoconf}
@@ -56,22 +58,25 @@ cp -f /usr/share/automake/{config.,missing}* .
 mkdir Linux
 cd Linux
 ../%configure \
+	--prefix=$RPM_BUILD_ROOT%{_prefix} \
 	--without-graphic-libs \
 	--with-dav \
-	--with-gl \
 	--with-x
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_prefix}/bin
 cd Linux
 %{__make} install
+ln -sf %{_prefix}/Amaya/applis/bin/%{name} $RPM_BUILD_ROOT%{_prefix}/bin/%{name} 
 
 %files
 %defattr(644,root,root,755)
-%doc COPYRIGHT README.amaya
+%doc amaya/COPYRIGHT README README.amaya README.gl
 %attr(755,root,root) %{_bindir}/amaya
-%{_datadir}/Amaya
+%dir %{_prefix}/Amaya
+%{_prefix}/Amaya
 
 %clean
 rm -rf $RPM_BUILD_ROOT
