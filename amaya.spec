@@ -49,9 +49,9 @@ Autorzy:
 %patch1 -p1
 
 %build
-#%{__aclocal}
+#%%{__aclocal}
 %{__autoconf}
-#%{__autoheader}
+#%%{__autoheader}
 cp -f /usr/share/automake/{config.,missing}* .
 mkdir Linux
 cd Linux
