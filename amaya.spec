@@ -1,12 +1,12 @@
 Summary:	Web Browser/Editor from the World Wide Web Consortium
 Summary(pl):	Przegl±darka/edytor stron www z World Wide Web Consortium
 Name:		amaya
-Version:	8.1a
+Version:	8.1b
 Release:	1
 License:	Copyright 1995-2002 (MIT) (INRIA), (L)GPL compatible
 Group:		X11/Applications/Networking
 Source0:	ftp://ftp.w3.org/pub/amaya/%{name}-src-%{version}.tgz
-# Source0-md5:	647b3246d6ee2c32132e61b273bc1ad7
+# Source0-md5:	4d7200e997d5e8fe9ce7cf0d1d4ad777
 #Source1:	ftp://ftp.w3.org/pub/amaya/Dutch.tgz
 #Source2:	ftp://ftp.w3.org/pub/amaya/Spanish.tgz
 #Source3:	ftp://ftp.w3.org/pub/amaya/Italian.tgz
