@@ -15,6 +15,7 @@ Source0:	ftp://ftp.w3.org/pub/amaya/%{name}-src-%{version}.tgz
 Patch0:		%{name}-install.patch
 URL:		http://www.w3.org/Amaya/
 BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	expat-devel
 BuildRequires:	gtk+-devel
 BuildRequires:	imlib-devel
@@ -22,7 +23,6 @@ BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
 
 %description
 Amaya is a complete web browsing and authoring environment and comes
@@ -66,13 +66,16 @@ cd Linux
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_prefix}/bin,%{_libdir}}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_libdir}}
 cd Linux
 %{__make} install \
 	prefix=$RPM_BUILD_ROOT%{_libdir} \
 	datadir=$RPM_BUILD_ROOT%{_libdir}
 
 ln -sf %{_libdir}/Amaya/applis/bin/amaya $RPM_BUILD_ROOT%{_bindir}/amaya
+
+%clean
+rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
@@ -85,6 +88,3 @@ ln -sf %{_libdir}/Amaya/applis/bin/amaya $RPM_BUILD_ROOT%{_bindir}/amaya
 %dir %{_libdir}/Amaya/applis
 %dir %{_libdir}/Amaya/applis/bin
 %attr(755,root,root) %{_libdir}/Amaya/applis/bin/*
-
-%clean
-rm -rf $RPM_BUILD_ROOT
