@@ -79,6 +79,8 @@ ln -sf %{_libdir}/Amaya/applis/bin/amaya $RPM_BUILD_ROOT%{_bindir}/amaya
 %{_libdir}/Amaya/amaya
 %{_libdir}/Amaya/annotlib
 %{_libdir}/Amaya/[cdf]*
+%dir %{_libdir}/Amaya/applis
+%dir %{_libdir}/Amaya/applis/bin
 %attr(755,root,root) %{_libdir}/Amaya/applis/bin/*
 
 %clean
