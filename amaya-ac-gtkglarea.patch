@@ -1,5 +1,5 @@
---- Amaya/configure.in.orig	Fri Jan  3 00:57:11 2003
-+++ Amaya/configure.in	Fri Jan  3 00:59:44 2003
+--- Amaya/configure.in.orig	Thu Dec 12 13:32:36 2002
++++ Amaya/configure.in	Fri Jan  3 14:43:15 2003
 @@ -620,6 +620,7 @@
  	for ac_dir in               		\
  		/usr/include/GL			\
@@ -8,3 +8,12 @@
  		/usr/X11R6/include/GL   	\
  		/usr/X11R6/include 		\
  		/usr/local/include		\
+@@ -915,7 +916,7 @@
+ 
+ # only include the IMG libraries if we are not in pure GTK mode (without GL)
+ if test "${with_gtk}" = "yes" -a "${with_gl}" != "yes" ; then
+-  IMGLIBS=
++  IMGLIBS="-ljpeg -lpng -lz"
+ else
+   IMGLIBS="-ljpeg -lpng -lz"
+ fi
