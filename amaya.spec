@@ -1,5 +1,5 @@
 Summary:	Web Browser/Editor from the World Wide Web Consortium
-Summary(pl.UTF-8):   Przeglądarka/edytor stron WWW z World Wide Web Consortium
+Summary(pl.UTF-8):	Przeglądarka/edytor stron WWW z World Wide Web Consortium
 Name:		amaya
 Version:	8.6
 Release:	1
