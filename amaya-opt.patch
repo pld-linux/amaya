@@ -1,0 +1,30 @@
+--- Amaya/configure.in.orig	2007-01-22 17:47:42.000000000 +0100
++++ Amaya/configure.in	2007-04-09 21:10:03.253217541 +0200
+@@ -668,12 +668,10 @@
+ AC_ARG_WITH(debug,              [  --with-debug          compiles Amaya with debuging options (-g) ])
+ if test "$with_debug" = "yes" ; then
+   with_debug="yes"
+-  CFLAGS="-g"
+-  CXXFLAGS="-g"
++  CFLAGS="$CFLAGS -g"
++  CXXFLAGS="$CXXFLAGS -g"
+ else
+   with_debug="no"
+-  CFLAGS="-O2"
+-  CXXFLAGS="-O2"
+ fi
+ 
+ if test "${CC}" = "gcc" ; then
+--- Amaya/configure.in.orig	2007-04-10 23:09:02.443712000 +0200
++++ Amaya/configure.in	2007-04-10 23:59:07.282948251 +0200
+@@ -700,9 +700,7 @@
+ # for exemple it's possible to install libwww with fink (fink install libwww)
+ # to avoid conflicts, we just force the linker to search for specified amaya path first
+ if test "$AMAYAOS" = "MACOSX" ; then
+-  LDFLAGS="-Wl,-search_paths_first"
+-else
+-  LDFLAGS=""
++  LDFLAGS="$LDFLAGS -Wl,-search_paths_first"
+ fi
+ 
+ dnl
