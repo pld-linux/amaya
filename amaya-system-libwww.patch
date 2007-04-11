@@ -1,0 +1,127 @@
+--- Amaya/configure.in.orig	2007-01-22 17:47:42.000000000 +0100
++++ Amaya/configure.in	2007-04-09 22:22:27.264768651 +0200
+@@ -1214,12 +1214,6 @@
+ 
+ 
+ if test "$build_amaya" = "yes" ; then
+-    if test ! -f $srcdir/../libwww/Makefile.in ; then
+-	AC_MSG_WARN(libwww sources not found !!)
+-	AC_MSG_WARN(Disabling Amaya build !)
+-	build_amaya="no"
+-    fi
+-
+     if test ! -f $srcdir/amaya/MathML.S ; then
+ 	if test "$with_math" = "yes" ; then
+ 	    AC_MSG_WARN(MathML sources not found !!)
+--- Amaya/amaya/Makefile.libwww.orig	2007-01-22 09:53:37.000000000 +0100
++++ Amaya/amaya/Makefile.libwww	2007-04-09 22:24:44.796606144 +0200
+@@ -20,7 +20,6 @@
+ 
+ #MKP: added -lwwwdav
+ AMAYA_LIBWWW_LIBS= \
+-		-L../$(LIBWWW)/Library/src/.libs \
+ 			$(LIBWWW_RDF_PARSER) \
+ 			-lwwwzip \
+ 			-lwwwapp \
+@@ -36,21 +35,15 @@
+ 			-lwwwcore \
+ 			-lwwwutils \
+ 			$(WWWDAV) \
+-		-L../$(LIBWWW)/modules/md5/.libs \
+ 			-lmd5 \
+-			../$(LIBWWW)/modules/expat/.libs/libexpat.a
+-#		-L../$(LIBWWW)/modules/expat/.libs \
+-#			-lexpat \
++			-lexpat
+ 
+ AMAYA_LIBWWW_EXTRA_LIBS=
+ 
+-AMAYA_LIBWWW_INCLUDES= -I../libwww \
+-		-I$(THOTDIR)/../libwww/Library/src \
+-		-I$(THOTDIR)../libwww/modules/md5 \
+-		-I$(THOTDIR)/../libwww/modules/expat/lib
++AMAYA_LIBWWW_INCLUDES= -I/usr/include/w3c-libwww
+ 
+ # this dependency calls the ../Makefile rule that compiles libwww
+-AMAYA_LIBWWW_SRC= $(LIBZ) amaya_comp_libwww
++AMAYA_LIBWWW_SRC= $(LIBZ)
+ 
+ amaya_comp_libwww : force
+ 		@(cd .. ; $(MAKE) libwww)
+--- Amaya/annotlib/Makefile.in.orig	2007-01-22 12:42:34.000000000 +0100
++++ Amaya/annotlib/Makefile.in	2007-04-10 09:55:43.243188370 +0200
+@@ -14,9 +14,7 @@
+ 
+ INCLUDES= -DHAVE_CONFIG_H -DANNOTATIONS \
+ 	  -I.. -I../amaya  -I@srcdir@/f -I@top_srcdir@/amaya \
+-	  -I@top_srcdir@/amaya/f -I../libwww \
+-	  -I@top_srcdir@/../libwww/Library/src \
+-	  -I@top_srcdir@/../libwww/modules/expat/lib \
++	  -I@top_srcdir@/amaya/f -I/usr/include/w3c-libwww \
+ 	   @AMAYA_RAPTOR_INCLUDES@ @THOTINCLUDES@ $(GUI_INCLUDES)
+ 
+ 
+--- Amaya/davlib/Makefile.in.orig	2007-01-22 12:42:34.000000000 +0100
++++ Amaya/davlib/Makefile.in	2007-04-10 10:21:17.418616046 +0200
+@@ -13,17 +13,14 @@
+ 
+ INCLUDES =-DHAVE_CONFIG_H -I.. \
+ 	  -I../amaya -I@srcdir@/f -I@top_srcdir@/amaya \
+-	  -I@top_srcdir@/amaya/f -I../libwww \
++	  -I@top_srcdir@/amaya/f -I/usr/include/w3c-libwww \
+ 	  -I@top_srcdir@/thotlib/include \
+-	  -I@top_srcdir@/../libwww/Library/src \
+-	  -I@top_srcdir@/../libwww/modules/expat/lib \
+ 	  -I$(DAVLIB)/tree/h -I$(DAVLIB)/h \
+ 	  $(GUI_INCLUDES)
+ 
+ OPTIONS	= @AMAYA_OPTIONS@ $(AMAYA_DAV_OPTIONS)
+ 
+ LIBWWW_LIBS= \
+-		-L../$(LIBWWW)/Library/src/.libs \
+ 			-lwwwapp \
+ 			-lwwwhttp \
+ 			-lwwwxml \
+@@ -39,11 +36,9 @@
+ 			-lwwwzip \
+ 			-lwwwftp \
+ 			-lwwwdav \
+-		-L../$(LIBWWW)/modules/md5/.libs \
+ 			-lmd5 \
+-		-L../$(LIBWWW)/modules/expat/.libs \
+ 			-lexpat \
+-		-ldl -L/usr/lib
++		-ldl
+ 
+ 
+ prefix = @prefix@
+@@ -52,7 +47,7 @@
+ 
+ ############################################
+ 
+-all : tree awparser.o AHTLockBase.o HTHome dav_obj davlib.a
++all : tree awparser.o AHTLockBase.o dav_obj davlib.a
+ 
+ dav_obj : $(AMAYA_DAV_OBJ)
+ 
+@@ -108,8 +103,7 @@
+ 	awnode.o \
+ 	awstring.o \
+ 	awpair.o \
+-	list.o \
+-	../$(LIBWWW)/Library/src/HTHome.o
++	list.o
+ 
+ #
+ # dependencies
+--- Amaya/amaya/Makefile.in.orig	2007-04-10 10:21:58.268943000 +0200
++++ Amaya/amaya/Makefile.in	2007-04-10 11:39:55.627491447 +0200
+@@ -141,7 +141,7 @@
+ 
+ AMAYA_OPTION_OBJ= \
+          $(AMAYA_LIBWWW_OBJ) $(AMAYA_SVG_OBJ) $(AMAYA_MATH_OBJ) \
+-         $(AMAYA_ANNOT_OBJ) $(AMAYA_DAV_OBJ) $(AMAYA_TEMPLATES_OBJ)
++         $(AMAYA_ANNOT_OBJ) $(AMAYA_TEMPLATES_OBJ)
+ 
+ AMAYA_SRC= \
+          $(AMAYA_LIBWWW_SRC) @AMAYA_RAPTOR_SRC@ \
