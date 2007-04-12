@@ -6,7 +6,7 @@ Summary:	Web Browser/Editor from the World Wide Web Consortium
 Summary(pl.UTF-8):	Przeglądarka/edytor stron WWW z World Wide Web Consortium
 Name:		amaya
 Version:	9.54
-Release:	1
+Release:	1.1
 License:	Copyright 1995-2002 (MIT) (INRIA), (L)GPL compatible
 Group:		X11/Applications/Networking
 Source0:	ftp://ftp.w3.org/pub/amaya/%{name}-src-%{version}.tgz
@@ -81,8 +81,13 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_prefix}}
 %{__make} -C Linux install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+%if  %{with gtk1}
+rm -f $RPM_BUILD_ROOT%{_bindir}/amaya-gtk
+ln -sf %{_prefix}/Amaya-%{version}/gtk/bin/amaya $RPM_BUILD_ROOT%{_bindir}/amaya
+%else
 rm -f $RPM_BUILD_ROOT%{_bindir}/amaya-wx
 ln -sf %{_prefix}/Amaya-%{version}/wx/bin/amaya $RPM_BUILD_ROOT%{_bindir}/amaya
+%endif
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -99,7 +104,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_prefix}/Amaya*/doc
 %{_prefix}/Amaya*/fonts
 %{_prefix}/Amaya*/resources
+%if  %{with gtk1}
+%dir %{_prefix}/Amaya*/gtk
+%dir %{_prefix}/Amaya*/gtk/bin
+%attr(755,root,root) %{_prefix}/Amaya*/gtk/bin/amaya
+%attr(755,root,root) %{_prefix}/Amaya*/gtk/bin/print
+%else
 %dir %{_prefix}/Amaya*/wx
 %dir %{_prefix}/Amaya*/wx/bin
 %attr(755,root,root) %{_prefix}/Amaya*/wx/bin/amaya
 %attr(755,root,root) %{_prefix}/Amaya*/wx/bin/print
+%endif
