@@ -24,6 +24,9 @@ BuildRequires:	libpng-devel >= 1.0
 BuildRequires:	redland-devel >= 0.9.16
 BuildRequires:	w3c-libwww-devel >= 5.4.0-8
 BuildRequires:	zlib-devel
+BuildRequires:	libraptor
+BuildRequires:	libraptor-devel
+BuildRequires:	libtool >= 2:1.4d-3
 %if %{with gtk1}
 BuildRequires:	gtk+-devel
 BuildRequires:	imlib-devel
@@ -58,6 +61,8 @@ dos2unix amaya/Makefile.in
 %patch1 -p1
 
 %build
+export LDFLAGS="-lraptor"
+%{__libtoolize}
 %{__aclocal}
 %{__autoconf}
 %{__autoheader}
