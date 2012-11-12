@@ -8,10 +8,12 @@ Group:		X11/Applications/Networking
 Source0:	ftp://ftp.w3.org/pub/amaya/%{name}-sources-%{version}.tgz
 # Source0-md5:	e8072c7b1d06b983951c56e9f51fbacf
 Patch0:		%{name}-opt.patch
+Patch1:		libpng-1.5.patch
 URL:		http://www.w3.org/Amaya/
 BuildRequires:	OpenGL-GLU-devel
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake
+BuildRequires:	dos2unix
 BuildRequires:	expat-devel
 BuildRequires:	libjpeg-devel >= 6b
 BuildRequires:	libpng-devel >= 1.0
@@ -47,6 +49,10 @@ install -d sys-libs
 mv Mesa freetype libwww redland wxWidgets sys-libs
 cd Amaya
 %patch0 -p1
+%patch1 -p1
+
+# AC_SUBST_FILE doesn't work with CR+LF
+#dos2unix amaya/Makefile.in
 
 %build
 cd Amaya
