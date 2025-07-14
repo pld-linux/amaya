@@ -48,8 +48,8 @@ interfejsem użytkownicy nie muszą wiedzieć co to jest HTML czy CSS.
 install -d sys-libs
 mv Mesa freetype libwww redland wxWidgets sys-libs
 cd Amaya
-%patch0 -p1
-%patch1 -p1
+%patch -P0 -p1
+%patch -P1 -p1
 
 # AC_SUBST_FILE doesn't work with CR+LF
 #dos2unix amaya/Makefile.in
